@@ -1,17 +1,17 @@
 # -*- coding: utf-8 -*-
 
-from unicodedata import normalize
+num = 82
 
+for x in range(7):
+    print(num)
+    for x in range(2):
+        num += 28
+        print(num)
 
-def formatar_texto(txt, codif='utf-8'):
-    try:
-        # Muda texto para maiúsculo, removendo espaços e acentos, limitando quantidade de caracteres para 10
-        text = normalize('NFKD', txt.decode(codif).upper().replace(' ','')).encode('ASCII', 'ignore')[0:10]
-    except:
-        text = 'ERROR'
+        num -= 13
+        print(num)
 
-    return text
-
-
-
-print(formatar_texto('Colégio Móbile'))
+        num += 28
+        num *= 2
+        print(num)
+        num -= 13
