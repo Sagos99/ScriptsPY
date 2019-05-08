@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 from telegram.ext import CommandHandler, Filters, MessageHandler, Updater
-from bs4 import BeautifulSoup
 from datetime import date
 import unirest
 
@@ -52,20 +51,17 @@ def editorial(texto):
     pos_final = pos_inicial
     link2 = unirest.get(get_link(editorial,pos_inicial,pos_final))
 
-
-    pos_inicial = link1.body.find('<p>')
-    pos_final = link1.body.find('</div>',pos_inicial)
-    texto1 = format_text(link1.body[pos_inicial:pos_final])
-    titulo1 = BeautifulSoup(link1.body, 'html.parser').title.string
-
-    pos_inicial = link2.body.find('<p>')
-    pos_final = link2.body.find('</div>',pos_inicial)
-    texto2 = format_text(link2.body[pos_inicial:pos_final])
-    titulo2 = BeautifulSoup(link2.body, 'html.parser').title.string
-
     if texto == 1:
+        pos_inicial = link1.body.find('<p>')
+        pos_final = link1.body.find('</div>',pos_inicial)
+        texto1 = format_text(link1.body[pos_inicial:pos_final])
+
         return texto1
     else:
+        pos_inicial = link2.body.find('<p>')
+        pos_final = link2.body.find('</div>',pos_inicial)
+        texto2 = format_text(link2.body[pos_inicial:pos_final])
+        
         return texto2
 
 def start(bot, update):
