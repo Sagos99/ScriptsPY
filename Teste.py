@@ -15,12 +15,11 @@ def format_text(texto):
             block = False
 
     if '&nbsp;' in novo_texto:
-        for i in range(0,6):
-            novo_texto = novo_texto.replace('&nbsp;'[i],'')
+        novo_texto = novo_texto.replace('&nbsp;','')
 
     return novo_texto
 
 
-texto = format_text("<p>eu tenho aqui&nbsp; um texto &nbsp;qualquer</p>")
+texto = format_text("<p>eu tenho aqui&nbsp; um texto &nbsp;qualquer em pt br & espero que funcione ; xD</p>")
 
 print(texto)
