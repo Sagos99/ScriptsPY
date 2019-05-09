@@ -31,9 +31,9 @@ def format_text(texto):
         elif letra == '>':
             block = False
 
-    if '&nbsp;' in novo_texto:
-        for i in range(0,6):
-            novo_texto = novo_texto.replace('&nbsp;'[i],'')
+    # if '&nbsp;' in novo_texto:
+    #     for i in range(0,6):
+    #         novo_texto = novo_texto.replace('&nbsp;'[i],'')
 
     return novo_texto
 
