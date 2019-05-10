@@ -63,7 +63,7 @@ def editorial(texto):
         return texto1
     else:
         pos_inicial = link2.body.find('<p>')
-        pos_final = link2.body.find('</div>',pos_inicial)
+        pos_final = link2.body.find('<div class="c-news__stars u-no-print js-continue-reading-hidden">',pos_inicial)
         texto2 = format_text(link2.body[pos_inicial:pos_final])
         
         return texto2
@@ -75,7 +75,7 @@ def start(bot, update):
         chat_id=update.message.chat_id,
         text=response_message
     )
-    
+
 
 def texto1(bot, update):
     response_message = editorial(1)
@@ -100,6 +100,13 @@ def unknown(bot, update):
         text=response_message
     )
 
+# def teste(bot, update):
+#     print(str(update.message.forward_from.first_name)+': '+str(update.message.text))
+#     bot.send_message(
+#         chat_id=update.message.chat_id,
+#         text='Ve lá'
+#     )
+
 
 def main():
     updater = Updater(token='825493456:AAE8L0hsuywcXH4tkRSRgn7UBk84j_eKvPA')
@@ -108,6 +115,7 @@ def main():
     dispatcher.add_handler(CommandHandler('start', start))
     dispatcher.add_handler(CommandHandler('texto1', texto1))
     dispatcher.add_handler(CommandHandler('texto2', texto2))
+    # dispatcher.add_handler(CommandHandler('teste', teste))
     dispatcher.add_handler(MessageHandler(Filters.command, unknown))
 
     updater.start_polling()
