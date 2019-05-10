@@ -57,7 +57,7 @@ def editorial(texto):
 
     if texto == 1:
         pos_inicial = link1.body.find('<p>')
-        pos_final = link1.body.find('</div>',pos_inicial)
+        pos_final = link1.body.find('<div class="c-news__stars u-no-print js-continue-reading-hidden">',pos_inicial)
         texto1 = format_text(link1.body[pos_inicial:pos_final])
 
         return texto1
