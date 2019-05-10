@@ -18,6 +18,7 @@ def get_link(response,pos_inicial=0,pos_final=0):
 
     return link
 
+
 def format_text(texto):
     novo_texto = ''
     block = False
@@ -67,12 +68,14 @@ def editorial(texto):
         
         return texto2
 
+
 def start(bot, update):
     response_message = "Digite /texto1 ou /texto2 para obter os editoriais"
     bot.send_message(
         chat_id=update.message.chat_id,
         text=response_message
     )
+    
 
 def texto1(bot, update):
     response_message = editorial(1)
