@@ -1,3 +1,7 @@
-txt = '/play blue da ba dee'
+from datetime import datetime,timedelta,time
 
-print(txt.split(' ',1)[1])
+mili = 3440*1000
+
+delta = timedelta(microseconds=mili)
+
+print(str(delta)[:7])
