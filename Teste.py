@@ -1,7 +1,5 @@
-from datetime import datetime,timedelta,time
+fila = []
 
-mili = 3440*1000
-
-delta = timedelta(microseconds=mili)
-
-print(str(delta)[:7])
+while True:
+    fila.append(input('Digite o link: '))
+    print(fila)

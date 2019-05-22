@@ -22,7 +22,7 @@ class Play_music:
     player = Instance.media_player_new()
 
     Media = None
-    volume = 100
+    volume = 0
 
     ajuda = """/play nome_da_música ou url.
 /pause Pausa a faixa atualmente sendo reproduzida.
@@ -49,7 +49,7 @@ class Play_music:
         )
 
 
-    def fila(self,link,bot,update):
+    def preencher_fila(self,link,bot,update):
 
         if self.video != None and self.player.is_playing() == 1:
             bot.send_message(
@@ -93,8 +93,8 @@ class Play_music:
                 link = 'https://www.youtube.com' + vid['href']
                 break
 
-            self.fila(link,bot,update)
-
+            self.preencher_fila(link,bot,update)
+            #print(self.player.audio_get_volume())
         except Exception as e:
             print('Erro: '+str(e))
             bot.send_message(
