@@ -59,17 +59,21 @@ def editorial(texto):
         pos_inicial = link1.body.find('<p>')
         pos_final = link1.body.find('<div class="c-news__stars u-no-print js-continue-reading-hidden">',pos_inicial)
         texto1 = format_text(link1.body[pos_inicial:pos_final])
+        titulo = link1.body[link1.body.find('<title>')+7:link1.body.find('</title>')]+'\n\n'
 
-        return texto1
+        return titulo+texto1
     else:
         pos_inicial = link2.body.find('<p>')
         pos_final = link2.body.find('<div class="c-news__stars u-no-print js-continue-reading-hidden">',pos_inicial)
         texto2 = format_text(link2.body[pos_inicial:pos_final])
+        titulo = link2.body[link2.body.find('<title>')+7:link2.body.find('</title>')]+'\n\n'
         
-        return texto2
+        return titulo+texto2
 
 
 def start(bot, update):
+    print(update.message.chat['first_name']+': '+update.message.text)
+
     response_message = "Digite /texto1 ou /texto2 para obter os editoriais"
     bot.send_message(
         chat_id=update.message.chat_id,
@@ -78,6 +82,8 @@ def start(bot, update):
 
 
 def texto1(bot, update):
+    print(update.message.chat['first_name']+': '+update.message.text)
+
     response_message = editorial(1)
     bot.send_message(
         chat_id=update.message.chat_id,
@@ -86,6 +92,8 @@ def texto1(bot, update):
 
 
 def texto2(bot, update):
+    print(update.message.chat['first_name']+': '+update.message.text)
+    
     response_message = editorial(2)
     bot.send_message(
         chat_id=update.message.chat_id,
@@ -94,18 +102,13 @@ def texto2(bot, update):
 
 
 def unknown(bot, update):
+    print(update.message.chat['first_name']+': '+update.message.text)
+    
     response_message = "Comando não encontrado, Digite /texto1 ou /texto2 para obter os editoriais"
     bot.send_message(
         chat_id=update.message.chat_id,
         text=response_message
     )
-
-# def teste(bot, update):
-#     print(str(update.message.forward_from.first_name)+': '+str(update.message.text))
-#     bot.send_message(
-#         chat_id=update.message.chat_id,
-#         text='Ve lá'
-#     )
 
 
 def main():
@@ -115,7 +118,6 @@ def main():
     dispatcher.add_handler(CommandHandler('start', start))
     dispatcher.add_handler(CommandHandler('texto1', texto1))
     dispatcher.add_handler(CommandHandler('texto2', texto2))
-    # dispatcher.add_handler(CommandHandler('teste', teste))
     dispatcher.add_handler(MessageHandler(Filters.command, unknown))
 
     updater.start_polling()
@@ -123,5 +125,5 @@ def main():
 
 
 if __name__ == '__main__':
-    print("press CTRL + C to cancel.")
+    print("Iniciado: Folha editorial\n")
     main()
