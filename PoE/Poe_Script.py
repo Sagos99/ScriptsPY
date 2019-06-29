@@ -42,7 +42,7 @@ def read_client():
         lista = arquivo.readlines()
         arquivo.close()
 
-        # Returna o número de linhas e o última linha do arquivo
+        # Retorna o número de linhas e a última linha do arquivo
         return [len(lista),lista[len(lista)-1]]
     except:
         return 0,''
