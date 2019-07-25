@@ -7,7 +7,7 @@ def read_queue():
         queue = queue_file.read()
         queue_file.close()
 
-        queue.split('\n') # Erro com esse \n
+        queue.split(',')
 
     except:
         queue = []
@@ -17,15 +17,16 @@ def read_queue():
     return queue
 
 
-
 def main():
     queue = read_queue()
     print(queue)
+    
+    print(type(queue))
 
-    import ipdb; ipdb.set_trace()
 
 
+# while True:
+#     main()
+#     sleep(1)
 
-while True:
-    main()
-    sleep(1)
+main()
