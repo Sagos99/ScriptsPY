@@ -1,32 +1,35 @@
 from time import sleep
 
 
-def read_queue():
+def get_link():
     try:
         queue_file = open('queue.txt', 'r')
         queue = queue_file.read()
         queue_file.close()
 
-        queue.split(',')
+        queue = queue.split('\n')
+            
+        if queue[len(queue)-1] == '':
+            queue.pop(len(queue)-1)
+
+        link = queue[0]
+        queue.pop(0)
+
+        import ipdb; ipdb.set_trace()
 
     except:
-        queue = []
         queue_file = open('queue.txt', 'w')
         queue_file.close()
+        link = []
 
-    return queue
+    return link
 
 
 def main():
-    queue = read_queue()
-    print(queue)
-    
-    print(type(queue))
+    link = get_link()
+
+    print(link)
 
 
-
-# while True:
-#     main()
-#     sleep(1)
 
 main()
