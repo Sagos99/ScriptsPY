@@ -1,32 +1,31 @@
 from time import sleep
 
 
-def read_queue():
+def get_link():
     try:
         queue_file = open('queue.txt', 'r')
         queue = queue_file.read()
         queue_file.close()
 
+        queue = queue.split('\n')
+            
+        if queue[len(queue)-1] == '':
+            queue.pop(len(queue)-1)
+
+        link = queue[0]
+        queue.pop(0)
+
     except:
-        queue = []
         queue_file = open('queue.txt', 'w')
         queue_file.close()
+        link = []
 
-    return queue
-
+    return link
 
 
 def main():
-    queue = read_queue()
-    print(queue)
-    queue.split('\n')
-    print('\n')
-    print(queue)
+    link = get_link()
 
-
-
-# while True:
-#     main()
-#     sleep(1)
+    print(link)
 
 main()

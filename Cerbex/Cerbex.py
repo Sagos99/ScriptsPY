@@ -1,15 +1,7 @@
+# -*- coding: utf-8 -*-
 from telegram.ext import CommandHandler, Filters, MessageHandler, Updater
-import sched, time
+import unirest
 
-
-s = sched.scheduler(time.time, time.sleep)
-def do_something(sc): 
-    print("Doing stuff...")
-    # do your stuff
-    #s.enter(5, 1, do_something, (sc,))
-    
-
-s.enter(30, 1, do_something, (s,))
 
 def start(bot, update):
     print(str(update.message.chat_id)+' '+update.message.chat['first_name']+': '+update.message.text)
@@ -20,8 +12,26 @@ def start(bot, update):
         text=response_message
     )
 
-    s.run()
-    s.enter(30, 1, do_something, (s,))
+def ditto(bot, update):
+    print(str(update.message.chat_id)+' '+update.message.chat['first_name']+': '+update.message.text)
+
+    response_message = u'Possíveis aparições de ditto:\n\n'
+
+    response = unirest.get("https://pokemon-go1.p.rapidapi.com/possible_ditto_pokemon.json",
+    headers={
+        "X-RapidAPI-Host": "pokemon-go1.p.rapidapi.com",
+        "X-RapidAPI-Key": "e9b0d5fec5msh4383c8fa32ee394p1b7c53jsn938b9968e3c7"
+    }
+    )
+
+    for item in response.body:
+        response_message += response.body.get(item).get('name')+u'\n'
+
+
+    bot.send_message(
+        chat_id=update.message.chat_id,
+        text=response_message
+    )
 
 
 def unknown(bot, update):
@@ -39,6 +49,7 @@ def main():
     dispatcher = updater.dispatcher
 
     dispatcher.add_handler(CommandHandler('start', start))
+    dispatcher.add_handler(CommandHandler('ditto', ditto))
     dispatcher.add_handler(MessageHandler(Filters.command, unknown))
 
     updater.start_polling()
