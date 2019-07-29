@@ -87,8 +87,6 @@ class Play_music:
             self.Media.get_mrl()
             self.player.set_media(self.Media)
             self.player.audio_set_volume(self.volume)
-
-            import ipdb; ipdb.set_trace()
             self.player.play()
             self.block_queue = False
 
