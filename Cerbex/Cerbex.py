@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
 from telegram.ext import CommandHandler, Filters, MessageHandler, Updater
+from datetime import datetime
 import unirest
 
 
 def start(bot, update):
-    print(str(update.message.chat_id)+' '+update.message.chat['first_name']+': '+update.message.text)
+    print(logger(update))
 
     response_message = 'Olá '+update.message.chat['first_name']+' ^^'
     bot.send_message(
@@ -13,7 +14,7 @@ def start(bot, update):
     )
 
 def ditto(bot, update):
-    print(str(update.message.chat_id)+' '+update.message.chat['first_name']+': '+update.message.text)
+    print(logger(update))
 
     response_message = u'Possíveis aparições de ditto:\n\n'
 
@@ -35,7 +36,7 @@ def ditto(bot, update):
 
 
 def unknown(bot, update):
-    print(str(update.message.chat_id)+' '+update.message.chat['first_name']+': '+update.message.text)
+    print(logger(update))
     
     response_message = "Comando não encontrado."
     bot.send_message(
@@ -54,6 +55,16 @@ def main():
 
     updater.start_polling()
     updater.idle()
+
+
+def logger(update):
+    if update:
+        log = datetime.strftime(datetime.now(), '%H:%M:%S %d/%m/%Y')
+        log += ' '+str(update.message.chat_id)+' '+update.message.chat['first_name']+': '+update.message.text
+        return log
+    else:
+        return 'Erro: objeto vazio'
+
 
 
 if __name__ == '__main__':
