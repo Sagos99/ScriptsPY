@@ -131,7 +131,7 @@ def response_bot(bot, update):
 
 
 def main():
-    updater = Updater(token='716611915:AAHoL4tm3lk-ThRAFkxUJjX0toaU8PVXgas')
+    updater = Updater(token='825493456:AAE8L0hsuywcXH4tkRSRgn7UBk84j_eKvPA')
     dispatcher = updater.dispatcher
 
     dispatcher.add_handler(MessageHandler(Filters.command, response_bot))
