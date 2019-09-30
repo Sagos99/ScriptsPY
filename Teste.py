@@ -1,24 +1,15 @@
-from multiprocessing import Process
-from time import sleep
+# aa = 'eita'
+# import pdb; pdb.pdb.set_trace()
 
-def teste01():
-    while True:
-        print('Teste01 sendo executado!')
-        sleep(1)
+create_vals = {
+            'name': 'Samuel',
+            'evaluation_date': '27/09/1996',
+            'user_id': '0',
+            'company_id': '0',
+            'course_id': None,
+            'batch_id': None,
+}
 
-def teste02():
-    while True:
-        print('Teste02 sendo executado!')
-        sleep(0.5)
+create_vals['humor'] = 'triste'
 
-
-
-if __name__ == "__main__":
-    t1 = Process(target=teste01)
-    t2 = Process(target=teste02)
-
-    t1.start()
-    t2.start()
-
-    t1.join()
-    t2.join()
+import ipdb; ipdb.set_trace()

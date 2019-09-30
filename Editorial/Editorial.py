@@ -38,6 +38,9 @@ def get_editorial(first_text):
             arquivo_texto1.write(editorial_txt1)
             arquivo_texto1.close()
 
+        while '\n\n' in editorial_txt1:
+            editorial_txt1 = editorial_txt1.replace('\n\n','\n')
+
         return editorial_txt1
 
     else:
@@ -68,6 +71,9 @@ def get_editorial(first_text):
             arquivo_texto2 = open('texto2.txt', 'w')
             arquivo_texto2.write(editorial_txt2)
             arquivo_texto2.close()
+
+        while '\n\n' in editorial_txt2:
+            editorial_txt2 = editorial_txt2.replace('\n\n','\n')
 
         return editorial_txt2
 

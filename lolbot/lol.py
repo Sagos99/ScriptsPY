@@ -5,7 +5,7 @@ import json
 
 
 def getInfo(summonerName):
-    APIKey = 'RGAPI-7ea89d5b-f055-480d-a16d-c32b5fdd67a7'
+    APIKey = 'RGAPI-b4ddfc6b-29e3-47d4-a316-cbfcb3c8cfc2'
 
     summonerData  = requestSummonerData(summonerName, APIKey)
     rankedData = requestRankedData(summonerData['id'], APIKey)
