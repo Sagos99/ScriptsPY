@@ -1,15 +1,9 @@
-# aa = 'eita'
-# import pdb; pdb.pdb.set_trace()
+lista = ['b','a','c','d','e']
 
-create_vals = {
-            'name': 'Samuel',
-            'evaluation_date': '27/09/1996',
-            'user_id': '0',
-            'company_id': '0',
-            'course_id': None,
-            'batch_id': None,
-}
+sumir = ['a','e','d']
 
-create_vals['humor'] = 'triste'
+for s in sumir:
+    lista.remove(s)
+
 
 import ipdb; ipdb.set_trace()
