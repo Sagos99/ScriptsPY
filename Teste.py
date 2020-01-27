@@ -1,9 +1,15 @@
-lista = ['b','a','c','d','e']
+listinha = ['Samuel','Ramos']
 
-sumir = ['a','e','d']
+first_name = listinha[0]
+listinha.pop(0)
+last_name = listinha[len(listinha)-1]
+listinha.pop(len(listinha)-1)
+middle_name = ''
 
-for s in sumir:
-    lista.remove(s)
+for name in listinha:
+    if name != listinha[len(listinha)-1]:
+        middle_name += name+' '
+    else:
+        middle_name += name
 
-
-import ipdb; ipdb.set_trace()
+print(first_name+' '+middle_name+' '+last_name)

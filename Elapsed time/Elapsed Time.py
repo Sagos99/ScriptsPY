@@ -1,9 +1,21 @@
 from datetime import datetime
+from time import sleep
+import pyperclip
 
 
+begin = input('Tempo da task: ')
+desc = None
 
-begin = input('Início da task: ')
-end = input('Fim da task: ')
+if len(begin) == 13:
+    end = begin.split(' ~ ')[1]
+    begin = begin.split(' ~ ')[0]
+elif len(begin) > 15:
+    end = begin[9:14]
+    desc = begin[16:]
+    begin = begin[1:6]
+else:
+    end = input('Fim da task: ')
+    
 formato = '%H:%M'
 
 if not end:
@@ -36,5 +48,11 @@ if minutes < 10:
 else:
     minutes = str(minutes)
 
+print('\nTempo nesta task: '+hours+':'+minutes)
 
-print('\nTempo da task: '+hours+':'+minutes)
+if desc:
+    print('Descrição: '+desc)
+    pyperclip.copy(desc)
+    sleep(8)
+
+pyperclip.copy(hours+':'+minutes)
