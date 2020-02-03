@@ -1,15 +1,17 @@
 from multiprocessing import Process
 from time import sleep
 
-def teste01():
+def teste01(num=0):
     while True:
-        print('Teste01 sendo executado!')
-        sleep(1)
+        num += 1
+        print('Primeiro: '+str(num))
+        sleep(2)
 
-def teste02():
+def teste02(num=0):
     while True:
-        print('Teste02 sendo executado!')
-        sleep(0.5)
+        num += 1
+        print('Segundo: '+str(num))
+        sleep(0.7)
 
 
 

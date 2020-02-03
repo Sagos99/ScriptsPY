@@ -1,6 +1,7 @@
 from telegram.ext import CommandHandler, Filters, MessageHandler, Updater
 from multiprocessing import Process
 from datetime import datetime
+import requests
 
 
 path_history = 'files/history.txt'
@@ -16,7 +17,7 @@ except:
     history_file.close()
 
 
-# Função para guardar todas as mensagens enviadas ao bot
+# Função para guardar e mostrar todas as mensagens enviadas ao bot
 def history(msg):
     history_file = open(path_history, 'a')
     history_file.write(msg+'\n')
@@ -24,7 +25,7 @@ def history(msg):
     print(msg)
 
 
-# Função para mostrar os logs
+# Função que monta os logs com data e hora e ID de cada usuário
 def logger(update):
     if update:
         log = datetime.strftime(datetime.now(), '%H:%M:%S %d/%m/%Y')
@@ -36,15 +37,17 @@ def logger(update):
 
 # Função responsável por enviar todos os tipos de mensagens aos usuários
 def setAnswer(user,message):
-    if message:
+    print('entro aqui')
+    if user and message:
         message = message.replace('&','')
         answer = requests.get('https://api.telegram.org/bot'+str(token)+'/sendMessage?chat_id='+str(user)+'&text='+str(message))
+        # https://api.telegram.org/bot1046877700:AAEayRhNPKIzb3g-wVb0nAttbxkPI_ZqZXk/sendMessage?chat_id=556607954&text=Mensagenzinha
         return True
     else:
         return False
 
 
-# Função para dar boas vindas a novos usuários
+# Função para dar boas vindas a novos usuários do privado
 def start(bot, update):
     history(logger(update))
 
@@ -62,6 +65,10 @@ def getHelp(bot, update):
     tSetAnswer.join()
 
 
+# Cria os objetos para ser assincrono
+tSetAnswer = Process(target=setAnswer)
+
+
 def main():
     updater = Updater(token=token)
     dispatcher = updater.dispatcher
@@ -73,10 +80,7 @@ def main():
     updater.idle()
 
 
+#if __name__ == '__main__':
+print('Professor Oak online!')
 tSetAnswer = Process(target=setAnswer)
-
-
-if __name__ == '__main__':
-
-    print('Professor Oak online!')
-    main()
+main()
