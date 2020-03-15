@@ -1,10 +1,10 @@
-# -*- mode: python -*-
+# -*- mode: python ; coding: utf-8 -*-
 
 block_cipher = None
 
 
 a = Analysis(['Poe_Script.py'],
-             pathex=['C:\\Users\\Samuel\\Documents\\GitHub\\ScriptsPY\\PoE'],
+             pathex=['C:\\Projects\\ScriptsPY\\PoE'],
              binaries=[],
              datas=[],
              hiddenimports=[],
@@ -33,4 +33,5 @@ coll = COLLECT(exe,
                a.datas,
                strip=False,
                upx=True,
+               upx_exclude=[],
                name='Poe_Script')
